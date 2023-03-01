@@ -24,36 +24,45 @@ var displayPrompts = function () {
 
 var generatePassword = function() {
 
-/* the length of the password 8 - 128 characters */
+/* the length of the password 8 - 128 characters 
+   if the iput is not a number
+   select criteria */
  var passwordLength = parseInt(prompt("Please input length of your password from 8 to 128!"));
  if (passwordLength < 8 || passwordLength > 128){
-       alert("Please choose a number between 8 and 128!")    
- } else  {  displayPrompts ();
+       alert("Please choose a number between 8 and 128!");   
+ } else if (isNaN(passwordLength)){
+  alert("Please enter a number!");
+ }
+ else  {  displayPrompts ();
   if (!wantsLowercase && !wantsUppercase && !wantsNumbers && !wantsSymbols){
-  alert ("Please choose at lease one criteria!")  
+  alert ("Please choose at lease one criteria!");  
 }}
      
- /* Select Criteria*/
+ /* generate password based on selected criteria */
  
  let result = "";
- let possiblePassword = "";
 
-  //if only one criteria is selected
-  for (var i = 0; i < passwordLength; i++) {
-      if (wantsLowercase===true) {
-        result += lowercaseChart[Math.floor(Math.random() * 26)];   
-      } 
-       else if (wantsUppercase===true) { 
-        result += uppercaseChart[Math.floor(Math.random() * 26)] ;
-      } 
-       else if (wantsNumbers===true) {  
-        result += numbers[Math.floor(Math.random() * 10)]  ;
-      } 
-      else if  (wantsSymbols===true) {
-        result += symbols[Math.floor(Math.random() * symbols.length)] ;
-      }     
-     
+ while (result.length < passwordLength) {
+  let randomCharSet = possiblePassword[Math.floor(Math.random() * possiblePassword.length)]; // Get random character array.
+  let randomChar = randomCharSet[Math.floor(Math.random() * randomCharSet.length)]; // Get random character from randomly chosen character array.
+
+  if (lowercaseChart.includes(randomChar) && wantsLowercase) {
+    result += randomChar;
   }
+
+  if (uppercaseChart.includes(randomChar) && wantsUppercase) {
+    result += randomChar;
+  }
+
+  if (numbers.includes(randomChar) && wantsNumbers) {
+    result += randomChar;
+  }
+
+  if (symbols.includes(randomChar) && wantsSymbols) {
+    result += randomChar;
+  }
+ }
+
  return result;
 }
 
@@ -65,9 +74,8 @@ var generatePassword = function() {
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
+  
 }
 
 // Add event listener to generate button
