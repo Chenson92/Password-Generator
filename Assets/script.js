@@ -60,14 +60,8 @@ var generatePassword = function() {
    }
    return result;
   }
+// Issue: when i input 9, and select all of the criteria, it will have 9 random lowercase letters plus 9 random uppercase letters plus 9 random numbers and 9 special symbols.
 
-  if (wantsLowercase === true && wantsUppercase === true){
-    let lettersChart = lowercaseChart.concat(uppercaseChart);
-    for (counter = 0; counter < passwordLength; counter++){
-      result += lettersChart[Math.floor(Math.random() * lettersChart.length)];
-     }
-     return result;
-  }
 }
 
  
