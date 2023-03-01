@@ -16,63 +16,47 @@ let wantsUppercase = false;
 let wantsNumbers = false;
 let wantsSymbols = false;
 
+var displayPrompts = function () {
+  wantsLowercase = confirm("Select 'OK' if you would like to include lowercase letters");
+  wantsUppercase = confirm("Select 'OK' if you would like to include uppercase letters");
+  wantsNumbers = confirm("Select 'OK' if you would like to include numbers");
+  wantsSymbols = confirm("Select 'OK' if you would like to include special characters");}
+
 var generatePassword = function() {
 
 /* the length of the password 8 - 128 characters */
  var passwordLength = parseInt(prompt("Please input length of your password from 8 to 128!"));
  if (passwordLength < 8 || passwordLength > 128){
        alert("Please choose a number between 8 and 128!")    
- } 
-
+ } else  {  displayPrompts ();
+  if (!wantsLowercase && !wantsUppercase && !wantsNumbers && !wantsSymbols){
+  alert ("Please choose at lease one criteria!")  
+}}
+     
  /* Select Criteria*/
- displayPrompts();
- var result = " ";
- let counter = 0;
- if (!wantsLowercase && !wantsUppercase && !wantsNumbers && !wantsSymbols){
-      alert ("Please choose at lease one criteria!")      
-} else {
+ 
+ let result = "";
+ let possiblePassword = "";
 
-    if (wantsLowercase === true) {
-    for (counter = 0; counter < passwordLength; counter++) {
-      result += lowercaseChart[Math.floor(Math.random() * 26)];
-    }
-   }
-
-    if (wantsUppercase===true){
-    for (counter = 0; counter < passwordLength; counter++) {
-      result += uppercaseChart[Math.floor(Math.random() * 26)];
-    }
-  
-   }
-
-    if (wantsNumbers===true) {
-    for (counter = 0; counter < passwordLength; counter++) {  
-      result += numbers[Math.floor(Math.random() * 10)];
-    }
-    
-   }
-
-    if (wantsSymbols===true) {
-    for (counter = 0; counter < passwordLength; counter++){
-     result += symbols[Math.floor(Math.random() * symbols.length)];
-    }
-   
-   }
-   return result;
+  //if only one criteria is selected
+  for (var i = 0; i < passwordLength; i++) {
+      if (wantsLowercase===true) {
+        result += lowercaseChart[Math.floor(Math.random() * 26)];   
+      } 
+       else if (wantsUppercase===true) { 
+        result += uppercaseChart[Math.floor(Math.random() * 26)] ;
+      } 
+       else if (wantsNumbers===true) {  
+        result += numbers[Math.floor(Math.random() * 10)]  ;
+      } 
+      else if  (wantsSymbols===true) {
+        result += symbols[Math.floor(Math.random() * symbols.length)] ;
+      }     
+     
   }
-// Issue: when i input 9, and select all of the criteria, it will have 9 random lowercase letters plus 9 random uppercase letters plus 9 random numbers and 9 special symbols.
-
+ return result;
 }
 
- 
-
-var displayPrompts = function () {
-wantsLowercase = confirm("Select 'OK' if you would like to include lowercase letters");
-wantsUppercase = confirm("Select 'OK' if you would like to include uppercase letters");
-wantsNumbers = confirm("Select 'OK' if you would like to include numbers");
-wantsSymbols = confirm("Select 'OK' if you would like to include special characters");
-};
- 
 
   
 
@@ -88,8 +72,6 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
 
 
 
