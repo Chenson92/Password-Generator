@@ -81,45 +81,6 @@ wantsSymbols = confirm("Select 'OK' if you would like to include special charact
  
 
   
-   
-  
-
-
-
-/*
-2.character types: yes/no
-lowercase, uppercase, numeric, and/or special characters */
-
-/*const Password = []
-if (symbols) {
-  Password.concat(symbols)
-}
-if (numbers) {
-  Password.concat(numbers)
-}
-if (uppercaseChart) {
-  Password.concat(uppercaseChart)
-}
-if (lowercaseChart) {
-  Password.concat(lowercaseChart)
-}*/
-
-/* after prompt, my input should be validated and 
-at least one character type should be selected */
-
-/*let password = '';
-let  passwordLength = parseInt(prompt("Please input length of your password from 8 to 128"));
-for (let i = 0; i < passwordLength; i++) {
-  password += possiblePassword[Math.floor(Math.random() * possiblePassword.length)]
-}*/
-
-/* all prompts are answered
-THEN a password is generated that matches the selected criteria */
-
-
-/* the password is either displayed in an alert 
-or written to the page */
-
 
 
 
