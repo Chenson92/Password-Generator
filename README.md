@@ -11,7 +11,7 @@ This is an application that enables to generate random passwords based on criter
 ![The Password Generator application displays a red button to "Generate Password".](./Assets/Screenshot.png)
 
 ## Link
-
+https://chenson92.github.io/Password-Generator/
 ## Credits
 
 N/A
